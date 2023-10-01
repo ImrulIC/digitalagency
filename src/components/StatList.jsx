@@ -1,6 +1,17 @@
 import React from "react";
 
-const StatList = () => {
+async function getData() {
+  const res = await fetch("https://agency.teamrabbil.com/api/StatList");
+  if (!res.ok) {
+    throw new Error("StatList not populated");
+  }
+  const data = await res.json();
+  return data;
+}
+
+const StatList = async () => {
+  const stats = await getData();
+  const { followers, solved, customers, projects } = stats;
   return (
     <>
       <section className="py-20">
@@ -17,7 +28,7 @@ const StatList = () => {
                   <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
                 </svg>
               </span>
-              <h3 className="text-2xl font-bold">250 324</h3>
+              <h3 className="text-2xl font-bold">{followers}</h3>
               <p className="text-gray-500">Followers</p>
             </div>
             <div className="mb-8 w-full md:w-1/2 lg:w-1/4 text-center">
@@ -37,7 +48,7 @@ const StatList = () => {
                   />
                 </svg>
               </span>
-              <h3 className="text-2xl font-bold">6 510</h3>
+              <h3 className="text-2xl font-bold">{solved}</h3>
               <p className="text-gray-500">Solved Problems</p>
             </div>
             <div className="mb-8 w-full md:w-1/2 lg:w-1/4 text-center">
@@ -57,7 +68,7 @@ const StatList = () => {
                   />
                 </svg>
               </span>
-              <h3 className="text-2xl font-bold">14 350</h3>
+              <h3 className="text-2xl font-bold">{customers}</h3>
               <p className="text-gray-500">Happy Customers</p>
             </div>
             <div className="mb-8 w-full md:w-1/2 lg:w-1/4 text-center">
@@ -76,7 +87,7 @@ const StatList = () => {
                   <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
                 </svg>
               </span>
-              <h3 className="text-2xl font-bold">149 324</h3>
+              <h3 className="text-2xl font-bold">{projects}</h3>
               <p className="text-gray-500">Projects</p>
             </div>
           </div>

@@ -11,7 +11,7 @@ async function getData() {
 
 const WorkList = async () => {
   let work = await getData();
-  console.log(work);
+
   return (
     <>
       <section>
@@ -25,49 +25,31 @@ const WorkList = async () => {
                 Build &amp; Launch without problems
               </h2>
             </div>
-            <div className="flex flex-wrap -mx-4">
-              <div className="mb-12 lg:mb-0 w-full md:w-1/2 lg:w-1/4 px-4">
-                <span className="mb-4 md:mb-6 inline-block bg-green-100 p-3 text-green-500 rounded">
-                  <svg
-                    className="w-8 h-8"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
+            <div className="flex flex-wrap mx-4">
+              {work.map((item) => {
+                const { id, title, des } = item;
+                return (
+                  <div
+                    key={id}
+                    className="mb-12 lg:mb-0 w-full md:w-1/2 lg:w-1/3 px-4"
                   >
-                    <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-                  </svg>
-                </span>
-                <h4 className="mb-4 text-2xl font-bold font-heading">
-                  Lorem ipsum dolor sit amet consectutar
-                </h4>
-                <p className="text-gray-500 leading-loose">
-                  Fusce quam tellus, placerat eu metus ut, viverra aliquet
-                  purus. Suspendisse potenti. Nulla non nibh feugiat.
-                </p>
-              </div>
-              <div className="mb-12 lg:mb-0 w-full md:w-1/2 lg:w-1/4 px-4">
-                <span className="mb-4 md:mb-6 inline-block bg-green-100 p-3 text-green-500 rounded">
-                  <svg
-                    className="w-8 h-8"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </span>
-                <h4 className="mb-4 text-2xl font-bold font-heading">
-                  Ut congue nec leo eget aliquam
-                </h4>
-                <p className="text-gray-500 leading-loose">
-                  Ut tempus tellus ac nisi vestibulum tempus. Nunc tincidunt
-                  lectus libero, ac ultricies augue elementum at.
-                </p>
-              </div>
+                    <span className="mb-4 md:mb-6 inline-block bg-green-100 p-3 text-green-500 rounded">
+                      <svg
+                        className="w-8 h-8"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                      </svg>
+                    </span>
+                    <h4 className="mb-4 text-2xl font-bold font-heading">
+                      {title}
+                    </h4>
+                    <p className="text-gray-500 leading-loose">{des}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
